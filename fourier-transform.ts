@@ -1,8 +1,7 @@
 export class FourierTransform {
     constructor() {}
 
-    // converts an array of complext numbers (signal at equally spaced time)
-    // to another array of coomplext numbers (amplitude + frequency)
+    // converts signal in the time domain to frequency domain
     public discreteFourierTransform(x: number[]): number[] {
         let results: number[] = []
         x.forEach((_, k) => {
