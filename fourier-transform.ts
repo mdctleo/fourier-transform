@@ -1,17 +1,24 @@
+import { ComplexNumber } from "./complex-number"
+
 export class FourierTransform {
     constructor() {}
 
     // converts signal in the time domain to frequency domain
-    public discreteFourierTransform(x: number[]): number[] {
-        let results: number[] = []
-        x.forEach((_, k) => {
-            results.push(x.reduce((total, xn, n) => {
-                return total + xn * (Math.cos(2 * Math.PI * k * n) * Math.sin(2 * Math.PI * k * n))
+    public discreteFourierTransform(sampledPoints: number[]): ComplexNumber[] {
+        const frequencyPoints: ComplexNumber[] = [];
+        const N = sampledPoints.length;
+        const sampledPointsConverted = sampledPoints.map(point => ComplexNumber.convertToComplexNumber(point));
+        sampledPoints.forEach((_, k) => {
+            frequencyPoints.push(sampledPointsConverted.reduce((total, point, n) => {
+                const rotation = new ComplexNumber({
+                    real: Math.cos(2 * Math.PI * k * n / N),
+                    imaginary: - Math.sin(2 * Math.PI * k * n / N)
+                });
+
+                return total.add(point.multiply(rotation));
             }))
-        })
-
-        return results
+        });
+        
+        return frequencyPoints;
     }
-
-
 }
