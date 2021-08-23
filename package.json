@@ -1,10 +1,18 @@
 {
-    "name": "fourier-transforms",
+  "name": "fourier-transforms",
   "author": "Leo Lin",
   "version": "0.0.1",
   "main": "./lib/main.js",
   "types": "./lib/main.d.ts",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.5"
   }
 }

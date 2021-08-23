@@ -16,7 +16,7 @@ export class FourierTransform {
                 });
 
                 return total.add(point.multiply(rotation));
-            }))
+            }));
         });
         
         return frequencyPoints;

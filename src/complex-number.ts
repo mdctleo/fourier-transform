@@ -25,11 +25,11 @@ export class ComplexNumber {
     public multiply(multiplicant: ComplexNumber): ComplexNumber {
         return new ComplexNumber({
             real: this.real * multiplicant.real - this.imaginary * multiplicant.imaginary,
-            imaginary: this.real * multiplicant.real + this.imaginary * multiplicant.imaginary
+            imaginary: this.real * multiplicant.imaginary + this.imaginary * multiplicant.real
         });
     }
 
-    public convertToComplexNumber(num: number): ComplexNumber {
+    public static convertToComplexNumber(num: number): ComplexNumber {
         return new ComplexNumber({
             real: num,
             imaginary: 0
