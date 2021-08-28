@@ -13,7 +13,7 @@ describe("Should be able to transform sampled amplitude points", () => {
     ).toStrictEqual([]);
   });
 
-  test("Should be able to sample many amplitude points", () => {
+  test("Should be able to sample many amplitude points, simple example", () => {
     const sampledPoints: number[] = [0, 0.707, 1, 0.707, 0, -0.707, -1, -0.707];
     const expectedResults: ComplexNumber[] = [
       new ComplexNumber({ real: 0, imaginary: 0 }),
@@ -23,6 +23,32 @@ describe("Should be able to transform sampled amplitude points", () => {
       new ComplexNumber({ real: 0, imaginary: 0 }),
       new ComplexNumber({ real: 0, imaginary: 0 }),
       new ComplexNumber({ real: 0, imaginary: 0 }),
+      new ComplexNumber({ real: 0, imaginary: 4 }),
+    ];
+
+    const actualResults =
+      fourierTransform.discreteFourierTransform(sampledPoints);
+
+    actualResults.forEach((actualResult, index) => {
+      expect(actualResult.real).toBeCloseTo(expectedResults[index].real);
+      expect(actualResult.imaginary).toBeCloseTo(
+        expectedResults[index].imaginary
+      );
+    });
+  });
+
+  test("Should be able to sample many amplitude points, complex eample", () => {
+    const sampledPoints: number[] = [
+      0.2165, 0.8321, 0.7835, 0.5821, 0.2165, -0.5821, -1.2165, -0.8321,
+    ];
+    const expectedResults: ComplexNumber[] = [
+      new ComplexNumber({ real: 0, imaginary: 0 }),
+      new ComplexNumber({ real: 0, imaginary: -4 }),
+      new ComplexNumber({ real: 0.866, imaginary: -0.5 }),
+      new ComplexNumber({ real: 0, imaginary: 0 }),
+      new ComplexNumber({ real: 0, imaginary: 0 }),
+      new ComplexNumber({ real: 0, imaginary: 0 }),
+      new ComplexNumber({ real: 0.866, imaginary: 0.5 }),
       new ComplexNumber({ real: 0, imaginary: 4 }),
     ];
 
