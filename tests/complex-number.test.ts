@@ -1,4 +1,4 @@
-import { ComplexNumber } from "../src/complex-number";
+import ComplexNumber from "../src/complex-number";
 
 describe("Test suites for ComplexNumber data structure and operations", () => {
   test("Should be able to convert a number to ComplexNumber", () => {

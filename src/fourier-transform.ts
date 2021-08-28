@@ -12,8 +12,8 @@ export default class FourierTransform {
       frequencyPoints.push(
         sampledPointsConverted.reduce((total, point, n) => {
           const rotation = new ComplexNumber({
-            real: Math.cos((2 * Math.PI * k * n) / N),
-            imaginary: -Math.sin((2 * Math.PI * k * n) / N),
+            real: Math.cos((-1 * (2 * Math.PI * k * n)) / N),
+            imaginary: Math.sin((-1 * (2 * Math.PI * k * n)) / N),
           });
 
           return total.add(point.multiply(rotation));

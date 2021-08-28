@@ -1,34 +1,48 @@
 export default class ComplexNumber {
-  private real: number;
+  private _real: number;
 
-  private imaginary: number;
+  private _imaginary: number;
+
+  private ZERO_THRESHOLD = 10 ** -10;
 
   constructor({ real = 0, imaginary = 0 } = {}) {
-    this.real = real;
-    this.imaginary = imaginary;
+    this._real = real;
+    this._imaginary = imaginary;
+  }
+
+  get real(): number {
+    return this._real;
+  }
+
+  get imaginary(): number {
+    return this._imaginary;
   }
 
   public add(addend: ComplexNumber): ComplexNumber {
     return new ComplexNumber({
-      real: this.real + addend.real,
-      imaginary: this.imaginary + addend.imaginary,
+      real: this.roundToZero(this._real + addend.real),
+      imaginary: this.roundToZero(this._imaginary + addend.imaginary),
     });
   }
 
   public subtract(subtrahend: ComplexNumber): ComplexNumber {
     return new ComplexNumber({
-      real: this.real - subtrahend.real,
-      imaginary: this.imaginary - subtrahend.imaginary,
+      real: this.roundToZero(this._real - subtrahend.real),
+      imaginary: this.roundToZero(this._imaginary - subtrahend.imaginary),
     });
   }
 
   // FOIL +  real plays with real, imaginary plays with imaginary
   public multiply(multiplicant: ComplexNumber): ComplexNumber {
     return new ComplexNumber({
-      real:
-        this.real * multiplicant.real - this.imaginary * multiplicant.imaginary,
-      imaginary:
-        this.real * multiplicant.imaginary + this.imaginary * multiplicant.real,
+      real: this.roundToZero(
+        this._real * multiplicant.real -
+          this._imaginary * multiplicant.imaginary
+      ),
+      imaginary: this.roundToZero(
+        this._real * multiplicant.imaginary +
+          this._imaginary * multiplicant.real
+      ),
     });
   }
 
@@ -37,5 +51,12 @@ export default class ComplexNumber {
       real: num,
       imaginary: 0,
     });
+  }
+
+  private roundToZero(num: number): number {
+    if (-this.ZERO_THRESHOLD < num && num < this.ZERO_THRESHOLD) {
+      return 0;
+    }
+    return num;
   }
 }
