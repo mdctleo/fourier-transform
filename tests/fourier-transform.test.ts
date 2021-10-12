@@ -1,10 +1,7 @@
 import ComplexNumber from "../src/complex-number";
 import FourierTransform from "../src/fourier-transform";
 
-const commonFourierTransformTests = (
-  implementationName: string,
-  implementation: any
-) => {
+const commonFourierTransformTests = (implementationName: string, implementation: any) => {
   test(`Should be able to transform 0 sampled amplitude points using ${implementationName}`, () => {
     const sampledPoints: number[] = [];
     expect(implementation(sampledPoints)).toStrictEqual([]);
@@ -27,9 +24,7 @@ const commonFourierTransformTests = (
 
     actualResults.forEach((actualResult, index) => {
       expect(actualResult.real).toBeCloseTo(expectedResults[index].real);
-      expect(actualResult.imaginary).toBeCloseTo(
-        expectedResults[index].imaginary
-      );
+      expect(actualResult.imaginary).toBeCloseTo(expectedResults[index].imaginary);
     });
   });
 
@@ -52,9 +47,7 @@ const commonFourierTransformTests = (
 
     actualResults.forEach((actualResult, index) => {
       expect(actualResult.real).toBeCloseTo(expectedResults[index].real);
-      expect(actualResult.imaginary).toBeCloseTo(
-        expectedResults[index].imaginary
-      );
+      expect(actualResult.imaginary).toBeCloseTo(expectedResults[index].imaginary);
     });
   });
 };
@@ -69,8 +62,5 @@ describe("Should be able to transform sampled amplitude points using Discrete Fo
 
 describe("Should be able to transform sampled amplitude points using Cooley-Tukey Algorithm", () => {
   const fourierTransform = new FourierTransform();
-  commonFourierTransformTests(
-    "Cooley-Tukey Algorithm",
-    fourierTransform.cooleyTukeyAlgorithm
-  );
+  commonFourierTransformTests("Cooley-Tukey Algorithm", fourierTransform.cooleyTukeyAlgorithm);
 });

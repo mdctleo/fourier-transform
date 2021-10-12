@@ -52,16 +52,12 @@ export default class FourierTransform {
           // eslint-disable-next-line no-param-reassign
           index -= sampledPointsEven.length;
         }
-        return sampledPointsEven[index]
-          .add(factor)
-          .multiply(sampledPointsOdd[index]);
+        return factor.multiply(sampledPointsOdd[index]).add(sampledPointsEven[index]);
       });
 
       return results;
     }
   };
 
-  private primeFactorAlgorithm = (
-    sampledPoints: number[]
-  ): ComplexNumber[] => [];
+  private primeFactorAlgorithm = (sampledPoints: number[]): ComplexNumber[] => [];
 }
